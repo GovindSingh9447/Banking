@@ -1,5 +1,7 @@
 package domain
 
+import "Banking/errors"
+
 type Customer struct{
 
 
@@ -13,8 +15,8 @@ type Customer struct{
 
 
 type CustomerRepository interface{
-	FindAll() ([]Customer,error)
+	FindAll() ([]Customer, error)
 
-	ById(string) (*Customer,error)
+	ById(string) (*Customer,*errors.AppError)
 }
 

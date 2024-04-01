@@ -1,10 +1,12 @@
 package service
 
 import "Banking/domain"
+import "Banking/errors"
+
 
 type CustomerService interface {
 	GetAllCustomer() ([]domain.Customer, error)
-	GetCustomer(string) (*domain.Customer, error)
+	GetCustomer(string) (*domain.Customer, *errors.AppError)
 }
 
 
@@ -16,7 +18,7 @@ func (s DefaultCustomerService) GetAllCustomer() ([]domain.Customer,error){
 	return s.repo.FindAll()
 }
 
-func (s DefaultCustomerService) GetCustomer(id string) (*domain.Customer,error){
+func (s DefaultCustomerService) GetCustomer(id string) (*domain.Customer,*errors.AppError){
 	return s.repo.ById(id)
 }
 
