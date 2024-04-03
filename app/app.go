@@ -5,7 +5,6 @@ import (
 	"Banking/service"
 	"log"
 	"net/http"
-
 	"github.com/gorilla/mux"
 )
 
@@ -22,6 +21,8 @@ func Start() {
 	ch := CustomerHandler{service.NewCustomerService(domain.NewCustomerRepositoryDb())}
     // Define routes
     router.HandleFunc("/customer", ch.getAllCustomers).Methods("GET")
+	router.HandleFunc("/customer/", ch.getAllCustomers).Methods("GET")
+	router.HandleFunc("/customer", ch.getAllCustomers).Methods("GET")
 	router.HandleFunc("/customer/{customer_id:[0-9]+}", ch.getCustomer).Methods("GET")
 
 
